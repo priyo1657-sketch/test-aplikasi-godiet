@@ -11,8 +11,8 @@ import {
   View,
 } from "react-native";
 import Svg, { Circle } from "react-native-svg";
-import { RootStackParamList } from "../../App";
-import { BorderRadius, Colors, Spacing } from "../theme/colors";
+import { RootStackParamList } from "../../../App";
+import { BorderRadius, Colors, Spacing } from "../../theme/colors";
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, "TrainingPlan">;
@@ -36,7 +36,7 @@ export default function TrainingPlanScreen({ navigation }: Props) {
     }).start();
 
     Animated.timing(animProgress, {
-      toValue: 70,
+      toValue: 100,
       duration: 2000,
       easing: Easing.out(Easing.quad),
       useNativeDriver: false,

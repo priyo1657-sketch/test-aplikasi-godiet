@@ -1,19 +1,22 @@
 // src/components/Button.tsx
-import React from 'react';
+import React, { useState } from "react";
 import {
-  TouchableOpacity,
-  Text,
-  StyleSheet,
   ActivityIndicator,
-  ViewStyle,
+  StyleSheet,
+  Text,
+  TextInput,
+  TextInputProps,
   TextStyle,
-} from 'react-native';
-import { Colors, BorderRadius } from '../theme/colors';
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from "react-native";
+import { BorderRadius, Colors } from "../theme/colors";
 
 interface ButtonProps {
   title: string;
   onPress: () => void;
-  variant?: 'primary' | 'outline' | 'ghost';
+  variant?: "primary" | "outline" | "ghost";
   loading?: boolean;
   disabled?: boolean;
   style?: ViewStyle;
@@ -23,7 +26,7 @@ interface ButtonProps {
 export const Button: React.FC<ButtonProps> = ({
   title,
   onPress,
-  variant = 'primary',
+  variant = "primary",
   loading = false,
   disabled = false,
   style,
@@ -33,9 +36,9 @@ export const Button: React.FC<ButtonProps> = ({
     <TouchableOpacity
       style={[
         styles.base,
-        variant === 'primary' && styles.primary,
-        variant === 'outline' && styles.outline,
-        variant === 'ghost' && styles.ghost,
+        variant === "primary" && styles.primary,
+        variant === "outline" && styles.outline,
+        variant === "ghost" && styles.ghost,
         (disabled || loading) && styles.disabled,
         style,
       ]}
@@ -44,14 +47,16 @@ export const Button: React.FC<ButtonProps> = ({
       activeOpacity={0.85}
     >
       {loading ? (
-        <ActivityIndicator color={variant === 'primary' ? Colors.white : Colors.primary} />
+        <ActivityIndicator
+          color={variant === "primary" ? Colors.white : Colors.primary}
+        />
       ) : (
         <Text
           style={[
             styles.text,
-            variant === 'primary' && styles.textPrimary,
-            variant === 'outline' && styles.textOutline,
-            variant === 'ghost' && styles.textGhost,
+            variant === "primary" && styles.textPrimary,
+            variant === "outline" && styles.textOutline,
+            variant === "ghost" && styles.textGhost,
             textStyle,
           ]}
         >
@@ -66,8 +71,8 @@ const styles = StyleSheet.create({
   base: {
     height: 52,
     borderRadius: BorderRadius.full,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     paddingHorizontal: 24,
   },
   primary: {
@@ -76,17 +81,17 @@ const styles = StyleSheet.create({
   outline: {
     borderWidth: 1.5,
     borderColor: Colors.primary,
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
   },
   ghost: {
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
   },
   disabled: {
     opacity: 0.5,
   },
   text: {
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   textPrimary: {
     color: Colors.white,
@@ -98,17 +103,6 @@ const styles = StyleSheet.create({
     color: Colors.primary,
   },
 });
-
-// src/components/Input.tsx
-import React, { useState } from 'react';
-import {
-  View,
-  TextInput,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  TextInputProps,
-} from 'react-native';
 
 interface InputProps extends TextInputProps {
   label?: string;
@@ -161,11 +155,11 @@ const inputStyles = StyleSheet.create({
     fontSize: 14,
     color: Colors.gray800,
     marginBottom: 6,
-    fontWeight: '500',
+    fontWeight: "500",
   },
   container: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     borderWidth: 1,
     borderColor: Colors.gray200,
     borderRadius: BorderRadius.md,

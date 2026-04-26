@@ -1,42 +1,45 @@
 // src/screens/LoginScreen.tsx
-import React, { useState } from 'react';
+import { AntDesign, Feather, FontAwesome } from "@expo/vector-icons";
+import Zocial from "@expo/vector-icons/Zocial";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import React, { useState } from "react";
 import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  TextInput,
-  ScrollView,
   KeyboardAvoidingView,
   Platform,
-} from 'react-native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../App';
-import { Colors, BorderRadius, Spacing } from '../theme/colors';
-
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { RootStackParamList } from "../../../App";
+import { Logo } from "../../components/Logo";
+import { BorderRadius, Colors, Spacing } from "../../theme/colors";
 type Props = {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'Login'>;
+  navigation: NativeStackNavigationProp<RootStackParamList, "Login">;
 };
 
 export default function LoginScreen({ navigation }: Props) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [focused, setFocused] = useState<string | null>(null);
 
   return (
     <KeyboardAvoidingView
       style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
     >
       {/* Green diagonal header */}
       <View style={styles.header}>
         <View style={styles.circleDecor} />
         <View style={styles.logoRow}>
-          <Text style={styles.logoIcon}>🏃</Text>
-          <Text style={styles.logoText}>GoDIET</Text>
+          <Logo size="medium" />
         </View>
-        <Text style={styles.welcomeTitle}>Hala, senang{'\n'}bertemu{'\n'}denganmu lagi!</Text>
+        <Text style={styles.welcomeTitle}>
+          Halo, senang{"\n"}bertemu{"\n"}denganmu lagi!
+        </Text>
       </View>
 
       <ScrollView
@@ -45,7 +48,7 @@ export default function LoginScreen({ navigation }: Props) {
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
       >
-        <Text style={styles.sectionTitle}>Log in to</Text>
+        <Text style={styles.sectionTitle}>Login</Text>
 
         {/* Email Input */}
         <View style={styles.inputWrapper}>
@@ -53,7 +56,7 @@ export default function LoginScreen({ navigation }: Props) {
           <View
             style={[
               styles.inputBox,
-              focused === 'email' && styles.inputBoxFocused,
+              focused === "email" && styles.inputBoxFocused,
             ]}
           >
             <TextInput
@@ -64,10 +67,10 @@ export default function LoginScreen({ navigation }: Props) {
               onChangeText={setEmail}
               keyboardType="email-address"
               autoCapitalize="none"
-              onFocus={() => setFocused('email')}
+              onFocus={() => setFocused("email")}
               onBlur={() => setFocused(null)}
             />
-            <Text style={styles.inputIconRight}>✉️</Text>
+            <Zocial name="email" size={24} color="black" />
           </View>
         </View>
 
@@ -77,7 +80,7 @@ export default function LoginScreen({ navigation }: Props) {
           <View
             style={[
               styles.inputBox,
-              focused === 'password' && styles.inputBoxFocused,
+              focused === "password" && styles.inputBoxFocused,
             ]}
           >
             <TextInput
@@ -87,13 +90,16 @@ export default function LoginScreen({ navigation }: Props) {
               value={password}
               onChangeText={setPassword}
               secureTextEntry={!showPassword}
-              onFocus={() => setFocused('password')}
+              onFocus={() => setFocused("password")}
               onBlur={() => setFocused(null)}
             />
             <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-              <Text style={styles.inputIconRight}>
-                {showPassword ? '🙈' : '👁️'}
-              </Text>
+              <Feather
+                name={showPassword ? "eye-off" : "eye"}
+                size={20}
+                color="#888888"
+                style={styles.inputIconRight}
+              />
             </TouchableOpacity>
           </View>
           <TouchableOpacity style={styles.forgotRow}>
@@ -104,10 +110,10 @@ export default function LoginScreen({ navigation }: Props) {
         {/* Login Button */}
         <TouchableOpacity
           style={styles.loginButton}
-          onPress={() => navigation.navigate('CreateProfile')}
+          onPress={() => navigation.navigate("CreateProfile")}
           activeOpacity={0.85}
         >
-          <Text style={styles.loginButtonText}>Log In</Text>
+          <Text style={styles.loginButtonText}>Login</Text>
         </TouchableOpacity>
 
         {/* Divider */}
@@ -119,28 +125,25 @@ export default function LoginScreen({ navigation }: Props) {
 
         {/* Social Login */}
         <View style={styles.socialRow}>
-          <TouchableOpacity style={styles.socialButton}>
-            <Text style={styles.socialIcon}>G</Text>
+          <TouchableOpacity style={styles.socialButton} activeOpacity={0.7}>
+            {/* Logo Google dari AntDesign */}
+            <AntDesign name="google" size={20} color="#FBBC05" />
             <Text style={styles.socialText}>Google</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.socialButton}>
-            <Text style={styles.socialIcon}>f</Text>
+
+          <TouchableOpacity style={styles.socialButton} activeOpacity={0.7}>
+            {/* Logo Facebook dari FontAwesome */}
+            <FontAwesome name="facebook" size={22} color="#1877F2" />
             <Text style={styles.socialText}>Facebook</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.socialButton}>
-            <Text style={styles.socialIcon}></Text>
-            <Text style={styles.socialText}>Apple</Text>
-          </TouchableOpacity>
         </View>
-
         {/* Sign Up link */}
         <TouchableOpacity
           style={styles.signUpRow}
-          onPress={() => navigation.navigate('SignUp')}
+          onPress={() => navigation.navigate("SignUp")}
         >
           <Text style={styles.signUpText}>
-            Belum punya akun?{' '}
-            <Text style={styles.signUpLink}>Sign Up</Text>
+            Belum punya akun? <Text style={styles.signUpLink}>Sign Up</Text>
           </Text>
         </TouchableOpacity>
       </ScrollView>
@@ -159,32 +162,32 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.lg,
     paddingBottom: 40,
     borderBottomRightRadius: 40,
-    overflow: 'hidden',
+    overflow: "hidden",
   },
   circleDecor: {
-    position: 'absolute',
+    position: "absolute",
     top: -50,
     right: -50,
     width: 180,
     height: 180,
     borderRadius: 90,
-    backgroundColor: 'rgba(255,255,255,0.1)',
+    backgroundColor: "rgba(255,255,255,0.1)",
   },
   logoRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 6,
     marginBottom: 20,
   },
   logoIcon: { fontSize: 22 },
   logoText: {
     fontSize: 18,
-    fontWeight: '800',
+    fontWeight: "800",
     color: Colors.white,
   },
   welcomeTitle: {
     fontSize: 24,
-    fontWeight: '700',
+    fontWeight: "700",
     color: Colors.white,
     lineHeight: 34,
   },
@@ -198,7 +201,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 20,
-    fontWeight: '700',
+    fontWeight: "700",
     color: Colors.textPrimary,
     marginBottom: Spacing.lg,
   },
@@ -209,11 +212,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: Colors.gray800,
     marginBottom: 6,
-    fontWeight: '500',
+    fontWeight: "500",
   },
   inputBox: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     borderWidth: 1,
     borderColor: Colors.gray200,
     borderRadius: BorderRadius.md,
@@ -235,31 +238,31 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   forgotRow: {
-    alignSelf: 'flex-end',
+    alignSelf: "flex-end",
     marginTop: 6,
   },
   forgotText: {
     fontSize: 13,
     color: Colors.primary,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   loginButton: {
     height: 52,
     backgroundColor: Colors.primary,
     borderRadius: BorderRadius.full,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     marginTop: 8,
     marginBottom: 20,
   },
   loginButtonText: {
     color: Colors.white,
     fontSize: 16,
-    fontWeight: '700',
+    fontWeight: "700",
   },
   dividerRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 12,
     marginBottom: 20,
   },
@@ -273,31 +276,43 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   socialRow: {
-    flexDirection: 'row',
+    flexDirection: "row",
     gap: 12,
     marginBottom: 24,
   },
   socialButton: {
     flex: 1,
-    height: 48,
-    borderRadius: BorderRadius.md,
+    flexDirection: "row", // Agar ikon dan teks berjejer ke samping
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#FFFFFF",
+    paddingVertical: 12,
+    borderRadius: 12,
     borderWidth: 1,
-    borderColor: Colors.gray200,
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 4,
+    borderColor: "#F0F0F0",
+    // Efek bayangan ringan
+    elevation: 2,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
   },
   socialIcon: {
     fontSize: 14,
-    fontWeight: '800',
+    fontWeight: "800",
     color: Colors.textPrimary,
   },
   socialText: {
-    fontSize: 11,
-    color: Colors.gray600,
+    marginLeft: 10, // Memberi jarak antara ikon dan teks
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#333333",
   },
   signUpRow: {
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "center", // Ubah bagian ini menjadi center
+    gap: 8, // Anda bisa mengubah angkanya jika jarak antar teks terlalu jauh/dekat
+    marginTop: 20,
   },
   signUpText: {
     fontSize: 14,
@@ -305,6 +320,6 @@ const styles = StyleSheet.create({
   },
   signUpLink: {
     color: Colors.primary,
-    fontWeight: '700',
+    fontWeight: "700",
   },
 });

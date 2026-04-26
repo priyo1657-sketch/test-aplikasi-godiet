@@ -1,21 +1,15 @@
 // src/screens/SignUpScreen.tsx
-import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Dimensions,
-  SafeAreaView,
-} from 'react-native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../App';
-import { Colors, BorderRadius, Spacing } from '../theme/colors';
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { RootStackParamList } from "../../../App";
+import { Logo } from "../../components/Logo";
+import { BorderRadius, Colors, Spacing } from "../../theme/colors";
 
-const { height } = Dimensions.get('window');
+// Dimensions imported but not used for specific values
 
 type Props = {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'SignUp'>;
+  navigation: NativeStackNavigationProp<RootStackParamList, "SignUp">;
 };
 
 export default function SignUpScreen({ navigation }: Props) {
@@ -27,14 +21,12 @@ export default function SignUpScreen({ navigation }: Props) {
         <View style={styles.circleDecor2} />
 
         <View style={styles.logoRow}>
-          <Text style={styles.logoIcon}>🏃</Text>
-          <Text style={styles.logoTextGreen}>GoDIET</Text>
+          <Logo size="medium" />
         </View>
 
         <Text style={styles.headline}>
-          Start your healthy with{'\n'}
-          <Text style={styles.headlineBrand}>🏃 GoDiet </Text>
-          Today
+          Start your healthy with{"\n"}
+          <Text style={styles.headlineBrand}>Today</Text>
         </Text>
       </View>
 
@@ -42,7 +34,7 @@ export default function SignUpScreen({ navigation }: Props) {
       <View style={styles.card}>
         <TouchableOpacity
           style={styles.signUpButton}
-          onPress={() => navigation.navigate('CreateProfile')}
+          onPress={() => navigation.navigate("CreateProfile")}
           activeOpacity={0.85}
         >
           <Text style={styles.emailIcon}>✉️</Text>
@@ -57,17 +49,17 @@ export default function SignUpScreen({ navigation }: Props) {
 
         <TouchableOpacity
           style={styles.loginButton}
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => navigation.navigate("Login")}
           activeOpacity={0.85}
         >
           <Text style={styles.googleIcon}>G</Text>
-          <Text style={styles.loginText}>Log In</Text>
+          <Text style={styles.loginText}>Login</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.termsRow}>
           <Text style={styles.termsText}>
-            Dengan mendaftar, kamu menyetujui{' '}
-            <Text style={styles.termsLink}>Syarat & Ketentuan</Text> dan{' '}
+            Dengan mendaftar, kamu menyetujui{" "}
+            <Text style={styles.termsLink}>Syarat & Ketentuan</Text> dan{" "}
             <Text style={styles.termsLink}>Kebijakan Privasi</Text> kami.
           </Text>
         </TouchableOpacity>
@@ -85,48 +77,48 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: Spacing.lg,
     paddingTop: 60,
-    justifyContent: 'center',
-    overflow: 'hidden',
+    justifyContent: "center",
+    overflow: "hidden",
   },
   circleDecor1: {
-    position: 'absolute',
+    position: "absolute",
     top: -40,
     right: -40,
     width: 200,
     height: 200,
     borderRadius: 100,
-    backgroundColor: 'rgba(255,255,255,0.08)',
+    backgroundColor: "rgba(255,255,255,0.08)",
   },
   circleDecor2: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 40,
     left: -60,
     width: 160,
     height: 160,
     borderRadius: 80,
-    backgroundColor: 'rgba(255,255,255,0.06)',
+    backgroundColor: "rgba(255,255,255,0.06)",
   },
   logoRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 6,
     marginBottom: 24,
   },
   logoIcon: { fontSize: 28 },
   logoTextGreen: {
     fontSize: 20,
-    fontWeight: '800',
+    fontWeight: "800",
     color: Colors.white,
     letterSpacing: 1,
   },
   headline: {
     fontSize: 28,
-    fontWeight: '300',
+    fontWeight: "300",
     color: Colors.white,
     lineHeight: 40,
   },
   headlineBrand: {
-    fontWeight: '800',
+    fontWeight: "800",
     color: Colors.white,
   },
   card: {
@@ -142,20 +134,20 @@ const styles = StyleSheet.create({
     height: 52,
     backgroundColor: Colors.primary,
     borderRadius: BorderRadius.full,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     gap: 10,
   },
   emailIcon: { fontSize: 18 },
   signUpText: {
     color: Colors.white,
     fontSize: 16,
-    fontWeight: '700',
+    fontWeight: "700",
   },
   dividerRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 12,
     marginVertical: 4,
   },
@@ -173,20 +165,20 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadius.full,
     borderWidth: 1.5,
     borderColor: Colors.gray200,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     gap: 10,
   },
   googleIcon: {
     fontSize: 16,
-    fontWeight: '800',
+    fontWeight: "800",
     color: Colors.primary,
   },
   loginText: {
     color: Colors.textPrimary,
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   termsRow: {
     paddingTop: 8,
@@ -194,11 +186,11 @@ const styles = StyleSheet.create({
   termsText: {
     fontSize: 12,
     color: Colors.gray400,
-    textAlign: 'center',
+    textAlign: "center",
     lineHeight: 18,
   },
   termsLink: {
     color: Colors.primary,
-    fontWeight: '600',
+    fontWeight: "600",
   },
 });

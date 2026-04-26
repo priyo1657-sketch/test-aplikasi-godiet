@@ -10,8 +10,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { RootStackParamList } from "../../App";
-import { BorderRadius, Colors, Spacing } from "../theme/colors";
+import { RootStackParamList } from "../../../App";
+import { BorderRadius, Colors, Spacing } from "../../theme/colors";
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, "CreateProfile">;
@@ -23,7 +23,7 @@ export default function CreateProfileScreen({ navigation }: Props) {
   const [gender, setGender] = useState<Gender>("Perempuan");
   const [name, setName] = useState("");
   const [age, setAge] = useState("18");
-  const country = "🇲🇾 Malaysia";
+  const [country] = useState("🇲🇾 Malaysia");
 
   const genderOptions: Gender[] = ["Laki-laki", "Perempuan", "Tidak Diketahui"];
 

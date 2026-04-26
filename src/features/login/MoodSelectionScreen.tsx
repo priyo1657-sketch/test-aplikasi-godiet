@@ -6,10 +6,12 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
-import { RootStackParamList } from "../../App";
-import { BorderRadius, Colors, Spacing } from "../theme/colors";
+import { RootStackParamList } from "../../../App";
+import { BorderRadius, Colors, Spacing } from "../../theme/colors";
+
+// Dimensions imported but not used for specific values
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, "MoodSelection">;
@@ -25,7 +27,7 @@ interface Mood {
 const moods: Mood[] = [
   { id: "1", label: "Happy", emoji: "😊", color: "#FFD700" },
   { id: "2", label: "Neutral", emoji: "😐", color: "#A8C8A0" },
-  { id: "3", label: "😔 Sad", emoji: "😔", color: "#6B9DC9" },
+  { id: "3", label: " Sad", emoji: "😔", color: "#6B9DC9" },
   { id: "4", label: "Tired", emoji: "😴", color: "#C9A87C" },
   { id: "5", label: "Angry", emoji: "😠", color: "#E07070" },
 ];
@@ -107,8 +109,8 @@ export default function MoodSelectionScreen({ navigation }: Props) {
         <TouchableOpacity
           style={styles.doneButton}
           onPress={() => {
-            // Navigate to Home / Dashboard (not in scope here)
-            navigation.navigate("Splash");
+            // Navigate to Home / Dashboard after mood selection
+            navigation.navigate("Home");
           }}
           activeOpacity={0.85}
         >
